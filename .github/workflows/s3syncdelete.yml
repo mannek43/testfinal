@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
+        id: checkout
         uses: actions/checkout@v2
+        with:
+          ref: test
 
       - name: Identify deleted files
         run: |
