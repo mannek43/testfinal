@@ -39,9 +39,15 @@ jobs:
           git fetch
           echo $GITHUB_SHA
           git show --pretty="format:" --name-only $GITHUB_SHA --diff-filter=D -1 > deletedfiles
-          DELETED_FILES=$(git show --pretty="format:" --name-only $GITHUB_SHA --diff-filter=D -1)
           cat deletedfiles
-          echo "printing"
-          echo "Deleted files: $DELETED_FILES"
+         # Set the name of the S3 bucket
+          BUCKET_NAME=testinggithub
+          # Read the list of file names from a text file
+          while read -r FILENAME; do
+          # Delete the file from the bucket
+          aws s3 rm "s3://${BUCKET_NAME}/${FILENAME}"
+          done < deletedfiles
+
+
           
           
