@@ -28,7 +28,8 @@ jobs:
           ls
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git fetch
-          DELETED_FILES=$( git show --pretty="format:" --name-only  --diff-filter=D -1)
-          echo "Deleted files: $DELETED_FILES"
+          echo $GITHUB_SHA
+          git show --pretty="format:" --name-only $GITHUB_SHA --diff-filter=D -1 > deletedfiles
+          cat deletedfiles
           
           
