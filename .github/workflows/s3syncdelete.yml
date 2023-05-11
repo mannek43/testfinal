@@ -17,6 +17,6 @@ jobs:
           # get the SHA of the previous commit
           PREVIOUS_SHA=$(git rev-parse HEAD^)
           # get a list of deleted files
-          DELETED_FILES=$(git diff --name-only --diff-filter=D $PREVIOUS_SHA HEAD)
+          DELETED_FILES=$(git diff --name-only HEAD^ HEAD --diff-filter=D)
           # print the list of deleted files
           echo "Deleted files: $DELETED_FILES"
