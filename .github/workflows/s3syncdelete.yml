@@ -1,0 +1,22 @@
+name: Identify Deleted Files
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  identify-deleted-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Identify deleted files
+        run: |
+          # get the SHA of the previous commit
+          PREVIOUS_SHA=$(git rev-parse HEAD^)
+          # get a list of deleted files
+          DELETED_FILES=$(git diff --name-only --diff-filter=D $PREVIOUS_SHA HEAD)
+          # print the list of deleted files
+          echo "Deleted files: $DELETED_FILES"
