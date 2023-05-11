@@ -15,15 +15,6 @@ jobs:
         with:
           ref: test
           
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v35        
-
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.any_deleted }}; do
-            echo "$file was changed"
-          done
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
