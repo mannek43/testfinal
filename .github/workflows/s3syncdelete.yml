@@ -3,7 +3,7 @@ name: Identify Deleted Files
 on:
   push:
     branches:
-      - test
+      - shcv
 
 jobs:
   identify-deleted-files:
